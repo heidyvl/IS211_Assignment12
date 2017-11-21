@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#my_table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#my_table td, #my_table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#my_table tr:nth-child(even){background-color: lightblue;}
+
+#my_table tr:hover {background-color: #ddd;}
+
+#my_table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.redbutton {
+    background-color: #f44336; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+ <title>My Class</title>
+ <h1>My Class</h1>
+ <form action="/student/add" method="get">
+ 
+ <table id = "my_table">
+    <tr>
+            <td style="width:400px"><b> Student Name </b></td>
+           
+        </tr>
+       
+	{% for student in Students %}
+    <td>{{ student.fname }} {{ student.lname }}
+  {% else %}
+    <em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+            </td>
+           
+
+            </td>
+        </tr>
+    </table>
+
+	 <table id = "my_table">
+    <tr>
+            <td style="width:400px"><b> Quizzes </b></td>
+           
+        </tr>
+		<tr>
+            <td style="width:400px"><b> Subject </b></td>
+            <td style="width:200px"><b> Questions </b></td>
+            <td style="width:100px"><b> Date  </b></td>
+        </tr>
+
+	{% for quiz in Quizzes %}
+    <td>{{ quiz.subject }} 
+	<td>{{ quiz.questions }}  
+	<td>{{ quiz.date }}
+  {% else %}
+    <em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+            </td>
+           
+
+            </td>
+        </tr>
+    </table>
+<table>
+<tr>
+<td>
+<input type="submit" value="Add Student " class="button">
+   </form>
+ </td>
+ <td>
+<form action="/quiz/add" method="get">
+    <input type="submit" value="Add Quiz" class="redbutton"></form>
+</td>
+</tr>
+</table>
