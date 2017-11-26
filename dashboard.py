@@ -86,10 +86,23 @@ def add_quiz():
         g.db.commit()
         flash('New entry was successfully posted')
         return redirect(url_for('dashboard'))
+
+@app.route('/student/<sid>', methods=['GET', 'POST'])
+def student_results(sid):
+    
+   
+        cur1=g.db.execute('SELECT * FROM Students_Results '
+                       'JOIN Students '
+                       'ON Students_Results.student = Students.id ')
+        quiz = cur1.fetchall()
+        cur2 =g.db.execute('SELECT fname, lname FROM Students')
+        name = cur2.fetchone()
+        return render_template('student_results.html', quiz=quiz, name=name)
+
+
     
 # set the secret key.  keep this really secret:
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-
 
 if __name__ == '__main__':
     app.run()
