@@ -51,7 +51,6 @@
 <body>
  <title>My Class</title>
  <h1>My Class</h1>
- <form action="/student/add" method="get">
  
   <table id = "my_table">
   <tr>
@@ -59,47 +58,17 @@
   
   </tr>
   <td>
-  
-  {% for student in Students %}
-    <div> <p><a href="{{ url_for('student_results', sid=student.id)}}"> {{ student.fname }} {{ student.lname }}</a></p> </div>
+	{% for student in Students %}
+		{% if student.id == sid %}
+		<div> <p><h1>Quiz Results for {{ name['fname'] }} {{ name['lname'] }}</h1>
+</p> </div>
+	{% endif %}
 	{% else %}
     <em>Unbelievable.  No entries here so far</em>
   {% endfor %}
- 
+  
    
   </td>
  
 </table> 
- 	 <table id = "my_table">
-    <tr>
-            <th style="width:400px">Quizzes </th>
-           
-        </tr>
-		<tr>
-            <th style="width:400px">Subject </th>
-            <th style="width:200px"> Questions </th>
-            <th style="width:100px"> Date </th>
-        </tr>
-	<tr>
-	{% for quiz in Quizzes %}
-    <td><div><p>{{ quiz.subject }}</p> </div></td>
-	<td><div><p>{{ quiz.questions }}</p> </div></td>
-	<td><div><p>{{ quiz.date }}</p> </div></td>
-  {% else %}
-    <em>Unbelievable.  No entries here so far</em>
-  {% endfor %}
-                            
-        </tr><br>
-    </table>
-<table>
-<tr>
-<td>
-<input type="submit" value="Add Student " class="button">
-   </form>
- </td>
- <td>
-<form action="/quiz/add" method="get">
-    <input type="submit" value="Add Quiz" class="redbutton"></form>
-</td>
-</tr>
-</table>
+ 
